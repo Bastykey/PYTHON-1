@@ -1,7 +1,4 @@
-
-
-
-def registrar_trabajor(documentos_trabajadores):
+def registrar_trabajador(documentos_trabajadores):
     nombres=input("Ingrese el Nombre  y el apellido:")
     cargo=input("Ingrese el cargo del trabajador:")
     sueldo_bruto=float(input("Ingrese el sueldo bruto del trabajador:"))
@@ -11,7 +8,7 @@ def registrar_trabajor(documentos_trabajadores):
     trabajador={ 
         "nombre":nombres,
         "cargo":cargo,
-        "sueldo_b":sueldo_bruto,
+        "sueldo_bruto":sueldo_bruto,
         "descuento_afp":descuento_afp,
         "descuento_salud": descuento_salud,
         "liquido_pagar": liquido_pagar
@@ -19,9 +16,13 @@ def registrar_trabajor(documentos_trabajadores):
     documentos_trabajadores.append(trabajador)
     print("Trabajador agregado con exito :)")
     
-
-def lista_trabajadores(documentos_trabajadores):
-    documentos_trabajadores.append
+def lista_trabajadores(trabajadores):
+    if not documentos_trabajadores:
+        print("No hay trabajadores registrados")
+    archivo_lista_trabajadores = "Planilla_lista_trabajadores.txt"
+    with open(archivo_lista_trabajadores, "w") as archivo:
+        for trabajador in trabajadores:
+            archivo.write(f"{trabajador}\n")
 
 
 def imprimir_planilla_sueldos(lista_trabajadores):
@@ -29,7 +30,7 @@ def imprimir_planilla_sueldos(lista_trabajadores):
         print("No hay trabajadores registrados")
         return
 
-    cargos=["CEO","DESAROLLADOR","ANALISTA DE DATOS"]
+    cargos=["CEO","DESARROLLADOR","ANALISTA DE DATOS"]
     print("Seleccione un cargo:")
     print("0. todos los cargos")
 
@@ -44,19 +45,20 @@ def imprimir_planilla_sueldos(lista_trabajadores):
     archivo=open(archivos_nombres,"w")
     for trabajador in lista_trabajadores:
         if todos_cargos=="todos" or trabajador['cargo'] == todos_cargos:
-            archivo.write(f"{trabajador['nombre']} - {trabajador['cargo']} -  {trabajador['sueldo_b']} - {trabajador['descuento_salud']} - {trabajador['descuento_afp']} - {trabajador['liquido_pagar']}\n")
+            archivo.write(f"{trabajador['nombre']} - {trabajador['cargo']} -  {trabajador['sueldo_bruto']} - {trabajador['descuento_salud']} - {trabajador['descuento_afp']} - {trabajador['liquido_pagar']}\n")
     archivo.close()
     print(f"Planilla de sueldo guardadas en {archivos_nombres}")
 documentos_trabajadores=[]
 while True:
+    print("**********************************")
     print("1. Registrar trabajador")
     print("2. Listar todos los trabajadores")
     print("3. Imprimir planilla de sueldos")
     print("4. Salir del programa")
+    print("**********************************")
     opcion = int(input("Ingrese una opción: "))
     if opcion == 1:
-
-        registrar_trabajor(documentos_trabajadores)
+        registrar_trabajador(documentos_trabajadores)
     elif opcion == 2:
         lista_trabajadores(documentos_trabajadores)
     elif opcion == 3:
