@@ -15,6 +15,7 @@ def registrar_trabajador(documentos_trabajadores):
     }
     documentos_trabajadores.append(trabajador)
     print("Trabajador agregado con exito :)")
+        
     
 def lista_trabajadores(trabajadores):
     if not documentos_trabajadores:
@@ -32,10 +33,10 @@ def imprimir_planilla_sueldos(lista_trabajadores):
 
     cargos=["CEO","DESARROLLADOR","ANALISTA DE DATOS"]
     print("Seleccione un cargo:")
-    print("0. todos los cargos")
-
-    for i, cargo in enumerate(cargos, start=1):
-       print(f"{i}.{cargo}") 
+    print("0. TODOS")
+    print("1. CEO")
+    print("2. DESAROLLADOR")
+    print("3. ANALISTA DE DATOS")
     op=int(input("ingrese su opcion:"))
     if op==0:
        todos_cargos="todos"
